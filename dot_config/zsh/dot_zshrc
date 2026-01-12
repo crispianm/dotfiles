@@ -28,6 +28,6 @@ unset __conda_setup
 
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(oh-my-posh init zsh --config '/home/crispianm/Documents/001-Script_Permanent_Locations/zsh-theme/config.json')"
+eval "$(oh-my-posh init zsh --config 'https://raw.githubusercontent.com/crispianm/dotfiles/refs/heads/main/Documents/001-Script_Permanent_Locations/zsh-theme/executable_config.json')"
 
 export PATH=$PATH:/home/crispianm/.spicetify
