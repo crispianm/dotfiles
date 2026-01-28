@@ -11,6 +11,14 @@ if test -d /home/linuxbrew/.linuxbrew/
 end
 {{ end -}}
 
-# 2. Initialize Oh My Posh
+# 2. Initialize Conda
+# Activate conda if it exists
+if test -d ~/miniconda3
+    source ~/miniconda3/etc/fish/conf.d/conda.fish
+else if test -d ~/anaconda3
+    source ~/anaconda3/etc/fish/conf.d/conda.fish
+end
+
+# 3. Initialize Oh My Posh
 # Using the URL ensures the theme is always the latest from your repo
 oh-my-posh init fish --config 'https://raw.githubusercontent.com/crispianm/dotfiles/refs/heads/main/Documents/001-Script_Permanent_Locations/zsh-theme/executable_config.json' | source
