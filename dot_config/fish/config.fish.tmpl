@@ -1,12 +1,16 @@
 # 1. Handle Homebrew based on OS
 {{ if eq .chezmoi.os "darwin" -}}
 # macOS (Apple Silicon) path
-if test -d /opt/homebrew/bin/brew
+if test -d /opt/homebrew/bin
+    # This ensures the binaries are found immediately by Fish
+    fish_add_path /opt/homebrew/bin
+    fish_add_path /usr/local/bin
     /opt/homebrew/bin/brew shellenv | source
 end
 {{ else if eq .chezmoi.os "linux" -}}
 # Linux (Arch) path
-if test -d /home/linuxbrew/.linuxbrew/
+if test -d /home/linuxbrew/.linuxbrew/bin
+    fish_add_path /home/linuxbrew/.linuxbrew/bin
     /home/linuxbrew/.linuxbrew/bin/brew shellenv | source
 end
 {{ end -}}
@@ -20,5 +24,7 @@ else if test -d ~/anaconda3
 end
 
 # 3. Initialize Oh My Posh
-# Using the URL ensures the theme is always the latest from your repo
-oh-my-posh init fish --config 'https://raw.githubusercontent.com/crispianm/dotfiles/refs/heads/main/Documents/001-Script_Permanent_Locations/zsh-theme/executable_config.json' | source
+if type -q oh-my-posh
+    # Point to the local file created by chezmoi
+    oh-my-posh init fish --config ~/.config/oh-my-posh/theme.json | source
+end
